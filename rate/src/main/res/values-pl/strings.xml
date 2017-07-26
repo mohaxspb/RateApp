@@ -1,0 +1,14 @@
+<resources>
+
+    <string name="yes">Tak</string>
+    <string name="not_now">Nie teraz</string>
+    <string name="not_notify">Nie przypominaj</string>
+
+    <string name="rate_app_title">Oceny %s</string>
+    <string name="main_dialog_text">Funduszu wyraża swoją wdzięczność za korzystanie z załącznika.!.\nGłosuj na niego?</string>
+    <string name="rate_title">Oceny od 1 do 5 gwiazdek</string>
+    <string name="help_us">Pomóż nam poprawić jakość</string>
+    <string name="thanks_for_rate">Dziękuję za Twoje oceny!</string>
+    <string name="feedback_hint">Powiedz mi, co chcesz poprawić</string>
+    <string name="choose_email_provider">Wybierz aplikację do wysyłania wiadomości e-mail do</string>
+</resources>
