@@ -1,32 +1,16 @@
-# Scp Downloads
+# Rate App
 
-This module used by [ScpFoundationRu](https://github.com/mohaxspb/ScpFoundationRu) project for mass downloads of articles
+This module used by [ScpFoundationRu](https://github.com/mohaxspb/ScpFoundationRu) project for asking user to rate app in Google Play
 
 # How to use
 
-If it is published in `jcenter` you can just use this in `build.gradle(module app)`
+It is published in `jcenter` so you can just use this in `build.gradle(module app)`
 
     //use transitive=true to get all lib dependencies
     compile ('ru.kuchanov.utils:rate:1.0.1@aar'){ transitive=true }
     
-Also you must add link to module repo in app-level `build.gradle` file
-
-    buildscript {
-        repositories {
-            jcenter()
-            mavenCentral()
-
-            //use jcenter when it will be ready
-            maven { url 'https://dl.bintray.com/mohaxspb/rate-app/' }
-        }
-    }
-    
 Do not forget to check latest version of module in [releases](https://github.com/mohaxspb/RateApp/releases) list in this repo.
 
-If it's not already published in jcenter and maven-central, you could remove direct link to this repo in app-level `build.gradle`
-
-    maven { url 'https://dl.bintray.com/mohaxspb/rate-app/' }
-    
 # How to update
 
 Use git-flow system for making changes and adding features
