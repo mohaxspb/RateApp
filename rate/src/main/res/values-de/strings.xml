@@ -1,0 +1,13 @@
+<resources>
+    <string name="yes">Ja</string>
+    <string name="not_now">Jetzt nicht</string>
+    <string name="not_notify">Erinnern Sie mich nicht</string>
+
+    <string name="rate_app_title">Rate app %s</string>
+    <string name="main_dialog_text">Die Stiftung freut sich über was Sie verwenden unsere Anwendung.\nWillst du für ihn stimmen?</string>
+    <string name="rate_title">Bewerten Sie die APP von 1 bis 5 Sternen</string>
+    <string name="help_us">Hilf uns besser zu werden</string>
+    <string name="thanks_for_rate">Vielen Dank für ihre Beurteilung!</string>
+    <string name="feedback_hint">Sag mir, was du verbessern möchtest</string>
+    <string name="choose_email_provider">Wählen Sie eine Anwendung aus, an die e-Mail gesendet werden soll</string>
+</resources>
