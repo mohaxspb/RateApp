@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="yes">Oui</string>
+    <string name="not_now">Pas maintenant</string>
+    <string name="not_notify">Ne pas me rappeler</string>
+
+    <string name="rate_app_title">Vote %s</string>
+    <string name="main_dialog_text">La Fondation est reconnaissante du fait que vous utilisez notre application.\nVoulez-vous voter pour lui?</string>
+    <string name="rate_title">S\'il vous plaît noter l\'application de 1 à 5 étoiles</string>
+    <string name="help_us">Aidez-nous à améliorer</string>
+    <string name="thanks_for_rate">Nous vous remercions de votre appréciation!</string>
+    <string name="feedback_hint">Dites-nous ce que vous souhaitez améliorer</string>
+    <string name="choose_email_provider">Sélectionnez cette option pour envoyer la demande email</string>
+</resources>
