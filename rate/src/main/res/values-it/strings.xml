@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="yes">Sì</string>
+    <string name="not_now">Non ora</string>
+    <string name="not_notify">Non ricordarmelo</string>
+
+    <string name="rate_app_title">Valutare %s</string>
+    <string name="main_dialog_text">Il fondo esprime la sua gratitudine per l\'applicazione.\nVuoi votare per lui?</string>
+    <string name="rate_title">Valuta l\'app da 1 a 5 stelle</string>
+    <string name="help_us">Aiutaci a migliorare</string>
+    <string name="thanks_for_rate">Grazie per la vostra valutazione!</string>
+    <string name="feedback_hint">Dimmi cosa vuoi migliorare</string>
+    <string name="choose_email_provider">Selezionare un\'applicazione a cui inviare l\'email</string>
+</resources>
