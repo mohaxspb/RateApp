@@ -25,13 +25,19 @@ public final class PreRate {
     private static String appName;
 
     private WeakReference<Context> cntxRef;
+
     private static PreRate instance;
+
     private MaterialDialog lastDialog;
 
     private String emailAddress;
+
     private String emailSubject;
+
     private String firstDialogText;
+
     private int titleColor;
+
     @SuppressLint("unused")
     private int lineColor;
 
@@ -67,24 +73,20 @@ public final class PreRate {
         return this;
     }
 
-    /***
-     * Эта команда как раз и запускает диалог когда необходимо
-     */
     public void showIfNeed() {
-        //Показываем если прошло время и есть интернет(без интернета пользователь не может проголосовать)
         if (TimeSettings.needShowPreRateDialog(cntxRef.get()) &&
-                (lastDialog == null || !lastDialog.isShowing()) &&
-                isConnected(cntxRef.get())) {
+            (lastDialog == null || !lastDialog.isShowing()) &&
+            isConnected(cntxRef.get())) {
             showRateDialog();
         }
     }
 
     /***
-     * Вызвать в onDestroy
+     * call in onDestroy
      */
     public static void clearDialogIfOpen() {
         if (instance != null && instance.lastDialog != null &&
-                instance.lastDialog.isShowing()) {
+            instance.lastDialog.isShowing()) {
             instance.lastDialog.dismiss();
         }
     }
@@ -106,7 +108,6 @@ public final class PreRate {
 
         lastDialog = builder.build();
         lastDialog.show();
-        // Ставим флаг, что надо показать позже(если пользователь в самом диалоге не выберет другой вариант)
         TimeSettings.setShowMode(cntxRef.get(), TimeSettings.SHOW_LATER);
         TimeSettings.saveLastShowTime(cntxRef.get());
     }
@@ -127,15 +128,12 @@ public final class PreRate {
                 .customView(customView, false)
                 .positiveText(R.string.yes)
                 .onPositive((dialog, which) -> {
-                    //Отображаем пред диалог
                     if (ratingBar.getRating() == 5) {
-                        //Отправляем пользователя на Google Play и помечаем, что больше не надо показывать
                         TimeSettings.setShowMode(cntxRef.get(), TimeSettings.NOT_SHOW);
-                        String appPackageName = cntxRef.get().getPackageName(); // getPackageName() from Context or Activity object
+                        String appPackageName = cntxRef.get().getPackageName();
                         try {
                             cntxRef.get().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(cntxRef.get().getString(R.string.market_os_url, appPackageName))));
                         } catch (android.content.ActivityNotFoundException anfe) {
-                            //Для случая запуска на симуляторе без Google Play
                             cntxRef.get().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(cntxRef.get().getString(R.string.market_web_url, appPackageName))));
                         }
                     } else {
@@ -166,7 +164,6 @@ public final class PreRate {
                 .onPositive((dialog, which) -> {
                     String text = etEmailText.getText().toString();
                     if (!TextUtils.isEmpty(text)) {
-                        //TODO доделать отправку данных и сообщение о том, что письмо отправлено
                         Intent intentEmail = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + emailAddress));
                         intentEmail.putExtra(Intent.EXTRA_EMAIL, new String[]{emailAddress});
                         intentEmail.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
@@ -179,7 +176,6 @@ public final class PreRate {
 
         lastDialog = builder.build();
         lastDialog.show();
-        //Если пользователь попал сюда, то ему что-то не понравилось, больше не показываем диалог
         TimeSettings.setShowMode(cntxRef.get(), TimeSettings.NOT_SHOW);
     }
 
