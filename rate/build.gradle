@@ -31,12 +31,12 @@ ext {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
 
     defaultConfig {
         minSdkVersion 17
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode buildVersionCode()
         versionName version
     }
@@ -59,12 +59,12 @@ android {
 }
 
 dependencies {
-    String supportLibraryVersion = '25.3.1'
+    String supportLibraryVersion = '26.1.0'
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.android.support:appcompat-v7:$supportLibraryVersion"
     //dialogs
-    compile 'com.afollestad.material-dialogs:core:0.9.4.5'
+    compile 'com.afollestad.material-dialogs:core:0.9.6.0'
     //ratingBar
     compile 'com.github.techery:properratingbar:0.0.5'
 }
