@@ -20,7 +20,7 @@ import java.lang.ref.WeakReference;
 
 import io.techery.properratingbar.ProperRatingBar;
 
-public class PreRate {
+public final class PreRate {
 
     private static String appName;
 
@@ -36,9 +36,10 @@ public class PreRate {
     private int lineColor;
 
     private PreRate() {
+        super();
     }
 
-    public static PreRate init(Activity act, String feedbackEmailTo, String feedbackSubj) {
+    public static PreRate init(final Activity act, final String feedbackEmailTo, final String feedbackSubj) {
         if (instance == null) {
             instance = new PreRate();
             instance.titleColor = ContextCompat.getColor(act, R.color.pre_rate_main_color);
@@ -54,14 +55,14 @@ public class PreRate {
     }
 
     @SuppressLint("unused")
-    public PreRate configureColors(int titleColor, int lineColor) {
+    public PreRate configureColors(final int titleColor, final int lineColor) {
         this.titleColor = titleColor;
         this.lineColor = lineColor;
         return this;
     }
 
     @SuppressLint("unused")
-    public PreRate configureText(String firstDialogText) {
+    public PreRate configureText(final String firstDialogText) {
         this.firstDialogText = firstDialogText;
         return this;
     }
@@ -73,8 +74,9 @@ public class PreRate {
         //Показываем если прошло время и есть интернет(без интернета пользователь не может проголосовать)
         if (TimeSettings.needShowPreRateDialog(cntxRef.get()) &&
                 (lastDialog == null || !lastDialog.isShowing()) &&
-                isConnected(cntxRef.get()))
+                isConnected(cntxRef.get())) {
             showRateDialog();
+        }
     }
 
     /***
@@ -82,12 +84,13 @@ public class PreRate {
      */
     public static void clearDialogIfOpen() {
         if (instance != null && instance.lastDialog != null &&
-                instance.lastDialog.isShowing())
+                instance.lastDialog.isShowing()) {
             instance.lastDialog.dismiss();
+        }
     }
 
-    private void showRateDialog() {
-        MaterialDialog.Builder builder = new MaterialDialog.Builder(cntxRef.get())
+    public void showRateDialog() {
+        final MaterialDialog.Builder builder = new MaterialDialog.Builder(cntxRef.get())
                 .cancelable(false)
                 .content(firstDialogText)
                 .title(cntxRef.get().getString(R.string.rate_app_title, getApplicationName(cntxRef.get())))
@@ -109,19 +112,16 @@ public class PreRate {
     }
 
     private void showPreStarsDialog() {
-        MaterialDialog.Builder builder = new MaterialDialog.Builder(cntxRef.get())
+        final MaterialDialog.Builder builder = new MaterialDialog.Builder(cntxRef.get())
                 .cancelable(false)
                 .title(getApplicationName(cntxRef.get()));
 
-        LayoutInflater inflater = LayoutInflater.from(cntxRef.get().getApplicationContext());
-        @SuppressLint("InflateParams")
-        View customView = inflater.inflate(R.layout.pre_rate_stars_dialog, null, false);
+        final LayoutInflater inflater = LayoutInflater.from(cntxRef.get().getApplicationContext());
+        @SuppressLint("InflateParams") final View customView = inflater.inflate(R.layout.pre_rate_stars_dialog, null, false);
 
-        ProperRatingBar ratingBar = (ProperRatingBar) customView.findViewById(R.id.ratingBar);
+        final ProperRatingBar ratingBar = customView.findViewById(R.id.ratingBar);
 
-        ratingBar.setListener(properRatingBar -> {
-            lastDialog.getActionButton(DialogAction.POSITIVE).setEnabled(true);
-        });
+        ratingBar.setListener(properRatingBar -> lastDialog.getActionButton(DialogAction.POSITIVE).setEnabled(true));
 
         builder
                 .customView(customView, false)
@@ -152,15 +152,14 @@ public class PreRate {
     }
 
     private void showFeedbackDialog() {
-        MaterialDialog.Builder builder = new MaterialDialog.Builder(cntxRef.get())
+        final MaterialDialog.Builder builder = new MaterialDialog.Builder(cntxRef.get())
                 .cancelable(false)
                 .title(R.string.help_us);
 
-        LayoutInflater inflater = LayoutInflater.from(cntxRef.get().getApplicationContext());
-        @SuppressLint("InflateParams")
-        View customView = inflater.inflate(R.layout.pre_rate_feedback_dialog, null, false);
+        final LayoutInflater inflater = LayoutInflater.from(cntxRef.get().getApplicationContext());
+        @SuppressLint("InflateParams") final View customView = inflater.inflate(R.layout.pre_rate_feedback_dialog, null, false);
 
-        EditText etEmailText = (EditText) customView.findViewById(R.id.etMessage);
+        final EditText etEmailText = customView.findViewById(R.id.etMessage);
 
         builder.customView(customView, false)
                 .positiveText(R.string.yes)
@@ -184,17 +183,17 @@ public class PreRate {
         TimeSettings.setShowMode(cntxRef.get(), TimeSettings.NOT_SHOW);
     }
 
-    private static String getApplicationName(Context context) {
+    private static String getApplicationName(final Context context) {
         if (appName == null) {
-            int stringId = context.getApplicationInfo().labelRes;
+            final int stringId = context.getApplicationInfo().labelRes;
             appName = context.getString(stringId);
         }
         return appName;
     }
 
-    private static boolean isConnected(Context context) {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+    private static boolean isConnected(final Context context) {
+        final ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        final NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 }
